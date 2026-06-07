@@ -78,6 +78,24 @@ function News() {
       </section>
 
       <section className="section-pad bg-white">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8 text-center">
+          <GoldDivider />
+          <h2 className="font-serif text-3xl text-[var(--navy-deep)] mt-3">Event Registration</h2>
+          <p className="mt-4 text-[var(--muted-foreground)]">
+            Register for upcoming parish events like Confirmation Class, family day, and our Easter Vigil. Use the button below to go to the event registration form.
+          </p>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeBe9Ia1favbmWg-S9w0ptAqHFh0PQgF4RQwcGNEwNOKkk-fw/viewform?embedded=true"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-8 inline-flex items-center justify-center rounded-full bg-[var(--navy)] px-7 py-3 text-sm font-semibold text-[var(--cream)] hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors"
+          >
+            Open Event Registration Form
+          </a>
+        </div>
+      </section>
+
+      <section className="section-pad bg-white">
         <div className="mx-auto max-w-3xl px-4 lg:px-8 text-center">
           <GoldDivider />
           <h2 className="font-serif text-3xl text-[var(--navy-deep)] mt-3">Parish Bulletin</h2>

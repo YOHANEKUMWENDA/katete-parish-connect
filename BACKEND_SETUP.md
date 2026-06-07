@@ -92,15 +92,28 @@ This document explains how to configure the backend and third-party services use
 1. Go to https://forms.google.com and create a new form.
 2. Click Send > Embed and copy the iframe code.
 3. Paste the iframe embed code into the event registration route or a dedicated page/component.
+4. **Enable Email Notifications** (to receive responses via email):
+   - Open your Google Form
+   - Click the three-dot menu ⋮ in the top right
+   - Select Settings
+   - Under "Notifications" tab, toggle "Get email notifications for each response"
+   - All submissions will now email you immediately
 
 ### Example
 ```html
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeBe9Ia1favbmWg-S9w0ptAqHFh0PQgF4RQwcGNEwNOKkk-fw/viewform?embedded=true" width="640" height="1547" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 ```
 
+### Where Responses Go
+- **Email**: Each submission will email you the complete response (if notifications enabled)
+- **Google Sheet**: All responses automatically populate in a linked Google Sheet (view/download anytime)
+  - Open your form > "Responses" tab > click the sheet icon to view all responses
+
 ### Notes
 - Google Forms handles submissions and stores them in a spreadsheet.
+- Email notifications send to the email account that created the form.
 - This is a backend-free event registration option.
+- You can also share the response sheet with others to view submissions.
 
 ---
 
