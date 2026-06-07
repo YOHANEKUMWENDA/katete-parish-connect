@@ -7,9 +7,9 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Katete Catholic Church Mission" },
-      { name: "description", content: "Get in touch with Katete Catholic Church Mission in Champhira, Mzimba." },
-      { property: "og:title", content: "Contact Katete Catholic Church" },
+      { title: "Contact — St. Thereza Catholic Church" },
+      { name: "description", content: "Get in touch with St. Thereza Catholic Church in Champhira, Mzimba District, Northern Region, Malawi." },
+      { property: "og:title", content: "Contact St. Thereza Catholic Church" },
       { property: "og:description", content: "Address, phone, email and contact form." },
     ],
   }),
@@ -30,7 +30,7 @@ function Contact() {
             <ul className="mt-6 space-y-5 text-sm">
               <li className="flex gap-3"><MapPin className="h-5 w-5 text-[var(--gold)] flex-shrink-0" />
                 <div><p className="font-semibold text-[var(--navy-deep)]">Address</p>
-                  <p className="text-[var(--muted-foreground)]">Katete Catholic Church Mission<br/>Champhira, Mzimba District<br/>Malawi</p></div>
+                  <p className="text-[var(--muted-foreground)]">St. Thereza Catholic Church<br/>Champhira, Mzimba District<br/>Northern Region, Malawi<br/>Plus Code: MJ37+Q56</p></div>
               </li>
               <li className="flex gap-3"><Phone className="h-5 w-5 text-[var(--gold)] flex-shrink-0" />
                 <div><p className="font-semibold text-[var(--navy-deep)]">Phone</p>
@@ -38,7 +38,7 @@ function Contact() {
               </li>
               <li className="flex gap-3"><Mail className="h-5 w-5 text-[var(--gold)] flex-shrink-0" />
                 <div><p className="font-semibold text-[var(--navy-deep)]">Email</p>
-                  <p className="text-[var(--muted-foreground)]">info@katetecatholic.org</p></div>
+                  <p className="text-[var(--muted-foreground)]">st.therezakatetechurch@gmail.com</p></div>
               </li>
               <li className="flex gap-3"><Clock className="h-5 w-5 text-[var(--gold)] flex-shrink-0" />
                 <div><p className="font-semibold text-[var(--navy-deep)]">Office Hours</p>

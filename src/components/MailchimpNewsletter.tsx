@@ -5,9 +5,9 @@ export function MailchimpNewsletter() {
     <section className="section-pad bg-[var(--navy)] text-[var(--cream)]">
       <div className="mx-auto max-w-3xl px-4 lg:px-8 text-center">
         <Mail className="h-8 w-8 text-[var(--gold)] mx-auto" />
-        <h2 className="font-serif text-3xl mt-4 mb-3">Stay Connected</h2>
+        <h2 className="font-serif text-3xl mt-4 mb-3">Subscribe Here</h2>
         <p className="text-[var(--cream)]/80 mb-8">
-          Subscribe to our monthly newsletter for parish news, prayer intentions, and upcoming events.
+          Join St. Thereza Catholic Church updates for parish news, prayer intentions, and upcoming events.
         </p>
 
         {/* Mailchimp Signup Form Embed */}
@@ -18,19 +18,45 @@ export function MailchimpNewsletter() {
               method="post"
               id="mc-embedded-subscribe-form"
               name="mc-embedded-subscribe-form"
-              target="_blank"
-              noValidate
               className="validate space-y-4"
             >
-              <div className="mc-field-group w-full">
-                <input
-                  type="email"
-                  name="EMAIL"
-                  className="required email w-full rounded-lg px-4 py-3 text-[var(--navy-deep)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--gold)]"
-                  id="mce-EMAIL"
-                  placeholder="Your email address"
-                  required
-                />
+              <div className="grid gap-4">
+                <label className="block text-left text-sm text-[var(--cream)]/80">
+                  <span className="block text-xs uppercase tracking-[0.2em] mb-1">Email Address</span>
+                  <input
+                    type="email"
+                    name="EMAIL"
+                    id="mce-EMAIL"
+                    autoComplete="email"
+                    className="required email w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--navy-deep)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--gold)]"
+                    placeholder="Your email address"
+                    required
+                  />
+                </label>
+                <label className="block text-left text-sm text-[var(--cream)]/80">
+                  <span className="block text-xs uppercase tracking-[0.2em] mb-1">First Name</span>
+                  <input
+                    type="text"
+                    name="FNAME"
+                    id="mce-FNAME"
+                    autoComplete="given-name"
+                    className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--navy-deep)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--gold)]"
+                    placeholder="First name"
+                    required
+                  />
+                </label>
+                <label className="block text-left text-sm text-[var(--cream)]/80">
+                  <span className="block text-xs uppercase tracking-[0.2em] mb-1">Last Name</span>
+                  <input
+                    type="text"
+                    name="LNAME"
+                    id="mce-LNAME"
+                    autoComplete="family-name"
+                    className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-3 text-[var(--navy-deep)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--gold)]"
+                    placeholder="Last name"
+                    required
+                  />
+                </label>
               </div>
               <div id="mce-responses" className="clear foot">
                 <div className="response" id="mce-error-response" style={{ display: "none" }}></div>

@@ -41,8 +41,8 @@ export function Nav() {
             <CrossIcon className="h-5 w-5" />
           </span>
           <span className="flex flex-col leading-tight">
-            <span className="font-serif text-base font-semibold text-[var(--navy-deep)]">Katete Catholic</span>
-            <span className="text-[10px] uppercase tracking-[0.18em] text-[var(--gold)]">Church Mission</span>
+            <span className="font-serif text-base font-semibold text-[var(--navy-deep)]">St. Thereza Catholic</span>
+            <span className="text-[10px] uppercase tracking-[0.18em] text-[var(--gold)]">Church</span>
           </span>
         </Link>
 

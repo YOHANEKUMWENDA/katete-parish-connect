@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Youtube, Mail, Phone, MapPin } from "lucide-react";
 import { CrossIcon } from "./Cross";
+import { MailchimpNewsletter } from "@/components/MailchimpNewsletter";
 
 export function Footer() {
   return (
@@ -12,8 +13,8 @@ export function Footer() {
               <CrossIcon className="h-5 w-5" />
             </span>
             <div className="leading-tight">
-              <p className="font-serif text-lg text-[var(--cream)]">Katete Catholic</p>
-              <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--gold)]">Church Mission</p>
+              <p className="font-serif text-lg text-[var(--cream)]">St. Thereza Catholic</p>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--gold)]">Church</p>
             </div>
           </div>
           <p className="text-sm leading-relaxed">
@@ -53,9 +54,9 @@ export function Footer() {
         <div>
           <h4 className="font-serif text-base text-[var(--gold)] mb-4">Contact</h4>
           <ul className="space-y-3 text-sm">
-            <li className="flex gap-2"><MapPin className="h-4 w-4 mt-0.5 text-[var(--gold)]" /> Champhira, Mzimba District, Malawi</li>
+            <li className="flex gap-2"><MapPin className="h-4 w-4 mt-0.5 text-[var(--gold)]" /> Champhira, Mzimba District, Northern Region, Malawi</li>
             <li className="flex gap-2"><Phone className="h-4 w-4 mt-0.5 text-[var(--gold)]" /> +265 000 000 000</li>
-            <li className="flex gap-2"><Mail className="h-4 w-4 mt-0.5 text-[var(--gold)]" /> info@katetecatholic.org</li>
+            <li className="flex gap-2"><Mail className="h-4 w-4 mt-0.5 text-[var(--gold)]" /> st.therezakatetechurch@gmail.com</li>
           </ul>
           <div className="flex gap-3 mt-5">
             <a href="#" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors">
@@ -68,9 +69,11 @@ export function Footer() {
         </div>
       </div>
 
+      <MailchimpNewsletter />
+
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-[var(--cream)]/60">
-          <p>© {new Date().getFullYear()} Katete Catholic Church Mission · Mzuzu Diocese</p>
+          <p>© {new Date().getFullYear()} St. Thereza Catholic Church · Mzuzu Diocese</p>
           <p className="italic">"Go therefore and make disciples of all nations." — Matthew 28:19</p>
         </div>
       </div>

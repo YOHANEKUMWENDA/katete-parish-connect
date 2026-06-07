@@ -6,9 +6,9 @@ import { Heart, Eye, Compass } from "lucide-react";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Katete Catholic Church Mission" },
+      { title: "About — St. Thereza Catholic Church" },
       { name: "description", content: "Our history, mission, pastoral team, and connection to the Mzuzu Diocese." },
-      { property: "og:title", content: "About Katete Catholic Church Mission" },
+      { property: "og:title", content: "About St. Thereza Catholic Church" },
       { property: "og:description", content: "Our history, mission, vision, and pastoral team." },
     ],
   }),
@@ -25,13 +25,13 @@ function About() {
           <GoldDivider className="justify-start" />
           <h2 className="font-serif text-3xl text-[var(--navy-deep)] mt-3">Our History</h2>
           <p className="mt-5 text-[var(--muted-foreground)] leading-relaxed">
-            Katete Catholic Church Mission was established as part of the early evangelizing work of the
+            St. Thereza Catholic Church was established as part of the early evangelizing work of the
             Missionaries of Africa in northern Malawi. From its humble beginnings under a mango tree, the
-            mission grew into a vibrant parish — building schools, chapels, and a community rooted in
+            parish grew into a vibrant community — building schools, chapels, and a family rooted in
             Christ and the Eucharist.
           </p>
           <p className="mt-4 text-[var(--muted-foreground)] leading-relaxed">
-            Today, as part of the Mzuzu Diocese, Katete serves thousands of faithful across Champhira and
+            Today, as part of the Mzuzu Diocese, St. Thereza serves thousands of faithful across Champhira and
             surrounding villages, continuing the missionary spirit of those who came before us.
           </p>
         </div>
@@ -67,7 +67,7 @@ function About() {
               <p className="text-xs uppercase tracking-[0.3em] text-[var(--gold)]">Parish Priest</p>
               <h3 className="font-serif text-3xl text-[var(--navy-deep)] mt-1">Rev. Fr. Joseph Banda</h3>
               <p className="mt-4 text-[var(--muted-foreground)] leading-relaxed">
-                Ordained in the Mzuzu Diocese, Fr. Joseph has shepherded the Katete community for the past
+                Ordained in the Mzuzu Diocese, Fr. Joseph has shepherded the St. Thereza community for the past
                 seven years. With a deep love for the Eucharist and pastoral care, he guides the parish in
                 faith, education, and outreach.
               </p>
@@ -106,7 +106,7 @@ function About() {
           <GoldDivider />
           <h2 className="font-serif text-3xl mt-3">Part of the Mzuzu Diocese</h2>
           <p className="mt-4 text-[var(--cream)]/80">
-            Katete Catholic Church Mission proudly serves under the spiritual leadership of the Diocese of
+            St. Thereza Catholic Church proudly serves under the spiritual leadership of the Diocese of
             Mzuzu, in communion with the universal Catholic Church.
           </p>
           <a href="#" className="mt-6 inline-flex rounded-full border border-[var(--gold)]/50 px-6 py-3 text-sm text-[var(--gold)] hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors">

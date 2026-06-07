@@ -6,8 +6,8 @@ import { Droplets, Cross, Flame, Heart, Hand, Users, BookOpen } from "lucide-rea
 export const Route = createFileRoute("/mass")({
   head: () => ({
     meta: [
-      { title: "Mass & Liturgy — Katete Catholic Church Mission" },
-      { name: "description", content: "Mass times, sacraments, confession schedule and liturgical calendar at Katete Catholic Church." },
+      { title: "Mass & Liturgy — St. Thereza Catholic Church" },
+      { name: "description", content: "Mass times, sacraments, confession schedule and liturgical calendar at St. Thereza Catholic Church." },
       { property: "og:title", content: "Mass & Liturgy" },
       { property: "og:description", content: "Mass schedule, sacraments, and liturgical seasons." },
     ],

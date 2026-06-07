@@ -6,9 +6,9 @@ import { Building, Globe, GraduationCap, Heart, Smartphone, Landmark } from "luc
 export const Route = createFileRoute("/give")({
   head: () => ({
     meta: [
-      { title: "Give — Katete Catholic Church Mission" },
-      { name: "description", content: "Support the mission of Katete Catholic Church through tithes and offerings." },
-      { property: "og:title", content: "Give to Katete Catholic Church" },
+      { title: "Give — St. Thereza Catholic Church" },
+      { name: "description", content: "Support the mission of St. Thereza Catholic Church through tithes and offerings." },
+      { property: "og:title", content: "Give to St. Thereza Catholic Church" },
       { property: "og:description", content: "Donate to our building fund, outreach, education and mission work." },
     ],
   }),
@@ -70,7 +70,7 @@ function Give() {
                 <span className="text-[var(--cream)]/70">TNM Mpamba</span>
                 <span className="font-mono text-[var(--gold)]">+265 088 000 000</span>
               </div>
-              <p className="text-[var(--cream)]/70 text-xs pt-2">Account name: Katete Catholic Mission</p>
+              <p className="text-[var(--cream)]/70 text-xs pt-2">Account name: St. Thereza Catholic Church</p>
             </div>
           </div>
 
@@ -79,7 +79,7 @@ function Give() {
             <h3 className="font-serif text-2xl text-[var(--navy-deep)] mt-3">Bank Transfer</h3>
             <div className="mt-5 space-y-3 text-sm text-[var(--muted-foreground)]">
               <p><strong className="text-[var(--navy-deep)]">Bank:</strong> National Bank of Malawi</p>
-              <p><strong className="text-[var(--navy-deep)]">Account:</strong> Katete Catholic Mission</p>
+              <p><strong className="text-[var(--navy-deep)]">Account:</strong> St. Thereza Catholic Church</p>
               <p><strong className="text-[var(--navy-deep)]">Account No:</strong> <span className="font-mono">0000 0000 0000</span></p>
               <p><strong className="text-[var(--navy-deep)]">Branch:</strong> Mzimba</p>
             </div>

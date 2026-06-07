@@ -6,7 +6,7 @@ import { GoldDivider, CrossIcon } from "@/components/site/Cross";
 export const Route = createFileRoute("/prayer")({
   head: () => ({
     meta: [
-      { title: "Prayer Corner — Katete Catholic Church Mission" },
+      { title: "Prayer Corner — St. Thereza Catholic Church" },
       { name: "description", content: "Daily Scripture, prayer requests, and a guide to the Holy Rosary." },
       { property: "og:title", content: "Prayer Corner" },
       { property: "og:description", content: "Daily Scripture and prayer requests." },

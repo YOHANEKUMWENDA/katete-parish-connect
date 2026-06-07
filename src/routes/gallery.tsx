@@ -10,10 +10,10 @@ import stainedGlass from "@/assets/stained-glass.jpg";
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
-      { title: "Gallery — Katete Catholic Church Mission" },
+      { title: "Gallery — St. Thereza Catholic Church" },
       { name: "description", content: "Photos from parish life, liturgy, youth events and community outreach." },
       { property: "og:title", content: "Gallery" },
-      { property: "og:description", content: "Glimpses of life at Katete Catholic Church Mission." },
+      { property: "og:description", content: "Glimpses of life at St. Thereza Catholic Church." },
     ],
   }),
   component: Gallery,

@@ -6,10 +6,10 @@ import { Calendar, MapPin, Clock, Download } from "lucide-react";
 export const Route = createFileRoute("/news")({
   head: () => ({
     meta: [
-      { title: "News & Events — Katete Catholic Church Mission" },
+      { title: "News & Events — St. Thereza Catholic Church" },
       { name: "description", content: "Parish news, upcoming events, and bulletin downloads." },
       { property: "og:title", content: "News & Events" },
-      { property: "og:description", content: "Stay up to date with Katete parish news and events." },
+      { property: "og:description", content: "Stay up to date with St. Thereza parish news and events." },
     ],
   }),
   component: News,
@@ -31,7 +31,7 @@ const events = [
 function News() {
   return (
     <SiteLayout>
-      <PageHero eyebrow="Life at Katete" title="News & Events" subtitle="Stay connected to our parish community." />
+      <PageHero eyebrow="Life at St. Thereza" title="News & Events" subtitle="Stay connected to our parish community." />
 
       <section className="section-pad bg-white">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">

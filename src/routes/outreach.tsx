@@ -6,8 +6,8 @@ import { GraduationCap, Stethoscope, Utensils, Baby, Handshake } from "lucide-re
 export const Route = createFileRoute("/outreach")({
   head: () => ({
     meta: [
-      { title: "Education & Outreach — Katete Catholic Church Mission" },
-      { name: "description", content: "Schools, community outreach and partnerships of Katete Catholic Church." },
+      { title: "Education & Outreach — St. Thereza Catholic Church" },
+      { name: "description", content: "Schools, community outreach and partnerships of St. Thereza Catholic Church." },
       { property: "og:title", content: "Education & Outreach" },
       { property: "og:description", content: "Our schools, outreach programs and Catholic partnerships." },
     ],
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/outreach")({
 });
 
 const schools = [
-  { n: "Katete Primary School", d: "A Catholic-affiliated primary school serving over 800 pupils from surrounding villages." },
+  { n: "St. Thereza Primary School", d: "A Catholic-affiliated primary school serving over 800 pupils from surrounding villages." },
   { n: "St. Joseph Secondary School", d: "Forming young Christian leaders through academics, faith and service." },
   { n: "Champhira Nursery", d: "Early childhood education rooted in love and prayer." },
 ];

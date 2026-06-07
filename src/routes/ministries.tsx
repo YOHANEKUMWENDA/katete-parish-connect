@@ -5,10 +5,10 @@ import { Users, Heart, Music, Crown, HandHelping, BookOpen, Sparkles } from "luc
 export const Route = createFileRoute("/ministries")({
   head: () => ({
     meta: [
-      { title: "Ministries & Groups — Katete Catholic Church Mission" },
-      { name: "description", content: "Youth, CWA, CMA, Choir, Legion of Mary, Outreach and Catechism — find your community at Katete." },
+      { title: "Ministries & Groups — St. Thereza Catholic Church" },
+      { name: "description", content: "Youth, CWA, CMA, Choir, Legion of Mary, Outreach and Catechism — find your community at St. Thereza." },
       { property: "og:title", content: "Ministries & Groups" },
-      { property: "og:description", content: "Explore the ministries and groups of Katete Catholic Church Mission." },
+      { property: "og:description", content: "Explore the ministries and groups of St. Thereza Catholic Church." },
     ],
   }),
   component: Ministries,
