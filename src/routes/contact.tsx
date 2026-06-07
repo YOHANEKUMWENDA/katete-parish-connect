@@ -1,0 +1,93 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { SiteLayout, PageHero } from "@/components/site/Layout";
+import { GoldDivider } from "@/components/site/Cross";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
+
+export const Route = createFileRoute("/contact")({
+  head: () => ({
+    meta: [
+      { title: "Contact — St. Thereza Catholic Church" },
+      { name: "description", content: "Get in touch with St. Thereza Catholic Church in Champira, Mzimba District." },
+      { property: "og:title", content: "Contact St. Thereza Catholic Church" },
+      { property: "og:description", content: "Address, phone, email and contact form." },
+    ],
+  }),
+  component: Contact,
+});
+
+function Contact() {
+  return (
+    <SiteLayout>
+      <PageHero eyebrow="Reach Out" title="Contact Us" subtitle="We'd love to hear from you." />
+
+      <section className="section-pad bg-white">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8 grid gap-10 md:grid-cols-2">
+          <div>
+            <GoldDivider className="justify-start" />
+            <h2 className="font-serif text-3xl text-[var(--navy-deep)] mt-3">Parish Office</h2>
+            <ul className="mt-6 space-y-5 text-sm">
+              <li className="flex gap-3"><MapPin className="h-5 w-5 text-[var(--gold)] flex-shrink-0" />
+                <div><p className="font-semibold text-[var(--navy-deep)]">Address</p>
+                  <p className="text-[var(--muted-foreground)]">St. Thereza Catholic Church<br/>Champira, Mzimba District<br/>Northern Region, Malawi<br/>Plus Code: MJ37+Q56<br/>Mzuzu Diocese</p></div>
+              </li>
+              <li className="flex gap-3"><Phone className="h-5 w-5 text-[var(--gold)] flex-shrink-0" />
+                <div><p className="font-semibold text-[var(--navy-deep)]">Phone</p>
+                  <p className="text-[var(--muted-foreground)]">+265 98 451 8884</p></div>
+              </li>
+              <li className="flex gap-3"><Mail className="h-5 w-5 text-[var(--gold)] flex-shrink-0" />
+                <div><p className="font-semibold text-[var(--navy-deep)]">Email</p>
+                  <p className="text-[var(--muted-foreground)]">info@sttheresacatholic.org</p></div>
+              </li>
+              <li className="flex gap-3"><Clock className="h-5 w-5 text-[var(--gold)] flex-shrink-0" />
+                <div><p className="font-semibold text-[var(--navy-deep)]">Office Hours</p>
+                  <p className="text-[var(--muted-foreground)]">Mon – Fri · 8:00 AM – 4:00 PM<br/>Sat · 9:00 AM – 12:00 PM</p></div>
+              </li>
+            </ul>
+          </div>
+
+          <form
+            action="https://formspree.io/f/xykaelrb"
+            method="POST"
+            className="rounded-2xl bg-[var(--cream)] p-7 shadow-[var(--shadow-soft)] space-y-4 border border-[var(--border)]"
+          >
+            <h3 className="font-serif text-2xl text-[var(--navy-deep)]">Send us a message</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <input required name="name" placeholder="Full Name" maxLength={100} className="rounded-md bg-white border border-[var(--border)] px-4 py-3 text-sm" />
+              <input required type="email" name="email" placeholder="Email" maxLength={255} className="rounded-md bg-white border border-[var(--border)] px-4 py-3 text-sm" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <input
+                name="phone"
+                type="tel"
+                inputMode="tel"
+                pattern="^\\+?[0-9\s()\-]{7,20}$"
+                title="Enter a valid phone number, like +265 999 999 999 or 0999 999 999"
+                placeholder="Phone"
+                maxLength={30}
+                className="rounded-md bg-white border border-[var(--border)] px-4 py-3 text-sm"
+              />
+              <input required name="subject" placeholder="Subject" maxLength={120} className="rounded-md bg-white border border-[var(--border)] px-4 py-3 text-sm" />
+            </div>
+            <textarea required name="message" placeholder="Your message…" rows={5} maxLength={1000} className="w-full rounded-md bg-white border border-[var(--border)] px-4 py-3 text-sm" />
+            <button type="submit" className="w-full rounded-full bg-[var(--navy)] py-3 text-sm font-semibold text-[var(--cream)] hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section className="bg-[var(--cream)] pb-20">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <div className="rounded-2xl overflow-hidden shadow-[var(--shadow-elegant)] aspect-[16/9] bg-white">
+            <iframe
+              title="Map of Mzimba"
+              src="https://www.google.com/maps?q=Champira,+Mzimba+District,+Northern+Region,+Malawi&output=embed"
+              className="w-full h-full border-0"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+    </SiteLayout>
+  );
+}
