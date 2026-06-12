@@ -55,14 +55,14 @@ export function Footer() {
           <h4 className="font-serif text-base text-[var(--gold)] mb-4">Contact</h4>
           <ul className="space-y-3 text-sm">
             <li className="flex gap-2"><MapPin className="h-4 w-4 mt-0.5 text-[var(--gold)]" /> Champhira, Mzimba District, Northern Region, Malawi</li>
-            <li className="flex gap-2"><Phone className="h-4 w-4 mt-0.5 text-[var(--gold)]" /> +265 000 000 000</li>
+            <li className="flex gap-2"><Phone className="h-4 w-4 mt-0.5 text-[var(--gold)]" /> +265 984 518 884</li>
             <li className="flex gap-2"><Mail className="h-4 w-4 mt-0.5 text-[var(--gold)]" /> st.therezakatetechurch@gmail.com</li>
           </ul>
           <div className="flex gap-3 mt-5">
             <a href="#" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors">
               <Facebook className="h-4 w-4" />
             </a>
-            <a href="#" aria-label="YouTube" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors">
+            <a href="https://www.youtube.com/@DayireMw-yi8bt" aria-label="YouTube" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors">
               <Youtube className="h-4 w-4" />
             </a>
           </div>

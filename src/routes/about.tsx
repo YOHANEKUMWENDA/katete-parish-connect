@@ -109,9 +109,7 @@ function About() {
             St. Thereza Catholic Church proudly serves under the spiritual leadership of the Diocese of
             Mzuzu, in communion with the universal Catholic Church.
           </p>
-          <a href="#" className="mt-6 inline-flex rounded-full border border-[var(--gold)]/50 px-6 py-3 text-sm text-[var(--gold)] hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors">
-            Visit Mzuzu Diocese
-          </a>
+          
         </div>
       </section>
     </SiteLayout>

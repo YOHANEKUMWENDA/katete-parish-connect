@@ -64,11 +64,11 @@ function Give() {
             <div className="mt-5 space-y-3 text-sm">
               <div className="flex justify-between border-b border-white/15 pb-3">
                 <span className="text-[var(--cream)]/70">Airtel Money</span>
-                <span className="font-mono text-[var(--gold)]">+265 099 000 000</span>
+                <span className="font-mono text-[var(--gold)]">10110507</span>
               </div>
               <div className="flex justify-between border-b border-white/15 pb-3">
                 <span className="text-[var(--cream)]/70">TNM Mpamba</span>
-                <span className="font-mono text-[var(--gold)]">+265 088 000 000</span>
+                <span className="font-mono text-[var(--gold)]">1515720</span>
               </div>
               <p className="text-[var(--cream)]/70 text-xs pt-2">Account name: St. Thereza Catholic Church</p>
             </div>
@@ -80,7 +80,7 @@ function Give() {
             <div className="mt-5 space-y-3 text-sm text-[var(--muted-foreground)]">
               <p><strong className="text-[var(--navy-deep)]">Bank:</strong> National Bank of Malawi</p>
               <p><strong className="text-[var(--navy-deep)]">Account:</strong> St. Thereza Catholic Church</p>
-              <p><strong className="text-[var(--navy-deep)]">Account No:</strong> <span className="font-mono">0000 0000 0000</span></p>
+              <p><strong className="text-[var(--navy-deep)]">Account No:</strong> <span className="font-mono">1008755047</span></p>
               <p><strong className="text-[var(--navy-deep)]">Branch:</strong> Mzimba</p>
             </div>
           </div>

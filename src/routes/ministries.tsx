@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";  // ← add useNavigate
 import { SiteLayout, PageHero } from "@/components/site/Layout";
 import { Users, Heart, Music, Crown, HandHelping, BookOpen, Sparkles } from "lucide-react";
 
@@ -25,6 +25,8 @@ const groups = [
 ];
 
 function Ministries() {
+  const navigate = useNavigate();  // ← add this
+
   return (
     <SiteLayout>
       <PageHero eyebrow="Get Involved" title="Ministries & Groups" subtitle="There is a place for you here." />
@@ -38,7 +40,9 @@ function Ministries() {
               </span>
               <h3 className="font-serif text-2xl text-[var(--navy-deep)] mt-5">{t}</h3>
               <p className="mt-3 text-sm text-[var(--muted-foreground)] leading-relaxed">{d}</p>
-              <button className="mt-5 inline-flex rounded-full bg-[var(--navy)] px-5 py-2 text-xs font-semibold uppercase tracking-wider text-[var(--cream)] hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors">
+              <button
+                onClick={() => navigate({ to: "/contact", search: { ministry: t } })}  // ← add this
+                className="mt-5 inline-flex rounded-full bg-[var(--navy)] px-5 py-2 text-xs font-semibold uppercase tracking-wider text-[var(--cream)] hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors">
                 Join Us
               </button>
             </article>

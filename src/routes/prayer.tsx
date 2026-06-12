@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
 import { GoldDivider, CrossIcon } from "@/components/site/Cross";
+import { submitPrayerRequest } from "@/lib/api";  
 
 export const Route = createFileRoute("/prayer")({
   head: () => ({
@@ -21,10 +22,32 @@ const mysteries = [
   { t: "Glorious", d: "Wednesdays & Sundays" },
   { t: "Luminous", d: "Thursdays" },
 ];
-
 function Prayer() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [name, setName] = useState("");
+  const [request, setRequest] = useState("");
 
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    try {
+      await submitPrayerRequest({
+        name: name || null,
+        request,
+        is_anonymous: !name || name.toLowerCase() === "anonymous",
+      });
+      setSent(true);
+      setName("");
+      setRequest("");
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
   return (
     <SiteLayout>
       <PageHero eyebrow="In Communion of Prayer" title="Prayer Corner" subtitle="Lift your heart to the Lord." />
@@ -45,17 +68,32 @@ function Prayer() {
       <section className="section-pad bg-[var(--cream)]">
         <div className="mx-auto max-w-3xl px-4 lg:px-8">
           <div className="text-center"><GoldDivider /><h2 className="font-serif text-3xl text-[var(--navy-deep)] mt-3">Submit a Prayer Request</h2></div>
-          <form
-            onSubmit={(e) => { e.preventDefault(); setSent(true); }}
-            className="mt-8 rounded-2xl bg-white p-7 shadow-[var(--shadow-soft)] space-y-4 border border-[var(--border)]"
-          >
-            {sent && <p className="text-sm text-green-700 bg-green-50 border border-green-200 rounded-md p-3">Your intention has been received. We will keep you in our prayers.</p>}
-            <input placeholder="Your name (or 'Anonymous')" maxLength={80} className="w-full rounded-md bg-[var(--cream)] border border-[var(--border)] px-4 py-3 text-sm" />
-            <textarea required placeholder="Share your prayer intention…" rows={5} maxLength={500} className="w-full rounded-md bg-[var(--cream)] border border-[var(--border)] px-4 py-3 text-sm" />
-            <button type="submit" className="w-full rounded-full bg-[var(--navy)] py-3 text-sm font-semibold text-[var(--cream)] hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors">
-              Submit Prayer
-            </button>
-          </form>
+         <form
+  onSubmit={handleSubmit}
+  className="mt-8 rounded-2xl bg-white p-7 shadow-[var(--shadow-soft)] space-y-4 border border-[var(--border)]"
+>
+  {sent && <p className="text-sm text-green-700 bg-green-50 border border-green-200 rounded-md p-3">Your intention has been received. We will keep you in our prayers.</p>}
+  {error && <p className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-md p-3">{error}</p>}
+  <input
+    placeholder="Your name (or leave blank for anonymous)"
+    maxLength={80} value={name}
+    onChange={e => setName(e.target.value)}
+    className="w-full rounded-md bg-[var(--cream)] border border-[var(--border)] px-4 py-3 text-sm"
+  />
+  <textarea
+    required
+    placeholder="Share your prayer intention…"
+    rows={5} maxLength={500} value={request}
+    onChange={e => setRequest(e.target.value)}
+    className="w-full rounded-md bg-[var(--cream)] border border-[var(--border)] px-4 py-3 text-sm"
+  />
+  <button
+    type="submit" disabled={loading}
+    className="w-full rounded-full bg-[var(--navy)] py-3 text-sm font-semibold text-[var(--cream)] hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors disabled:opacity-60"
+  >
+    {loading ? "Submitting…" : "Submit Prayer"}
+  </button>
+</form>
         </div>
       </section>
 

@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
 import { GoldDivider } from "@/components/site/Cross";
 import { Calendar, MapPin, Clock, Download } from "lucide-react";
+import { fetchPublicEvents, checkBulletinExists, getBulletinDownloadUrl } from "@/lib/api";
 
 export const Route = createFileRoute("/news")({
   head: () => ({
@@ -15,6 +17,28 @@ export const Route = createFileRoute("/news")({
   component: News,
 });
 
+interface Event {
+  id: number;
+  title: string;
+  description: string;
+  event_date: string;
+  location: string;
+  category: string;
+  is_published: boolean;
+}
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString("en-GB", {
+    day: "numeric", month: "short", year: "numeric",
+  });
+}
+
+function formatTime(dateStr: string) {
+  return new Date(dateStr).toLocaleTimeString("en-GB", {
+    hour: "2-digit", minute: "2-digit",
+  });
+}
+
 const posts = [
   { cat: "Announcement", t: "Confirmation Class 2026 Registration Opens", d: "Feb 12, 2026", e: "Register your candidates for this year's Confirmation preparation programme." },
   { cat: "Mission", t: "Outreach to Mthonsi Village", d: "Feb 04, 2026", e: "Our parish team distributed food and prayed with families affected by recent floods." },
@@ -22,13 +46,20 @@ const posts = [
   { cat: "Liturgy", t: "Lenten Schedule Released", d: "Jan 10, 2026", e: "Find Stations of the Cross times and Lenten reflection topics inside." },
 ];
 
-const events = [
-  { t: "Ash Wednesday Mass", d: "Feb 18, 2026", time: "6:00 AM & 6:00 PM", loc: "Main Church" },
-  { t: "Parish Family Day", d: "Mar 09, 2026", time: "10:00 AM", loc: "Parish Grounds" },
-  { t: "Easter Vigil", d: "Apr 04, 2026", time: "7:30 PM", loc: "Main Church" },
-];
-
 function News() {
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [bulletinExists, setBulletinExists] = useState(false);
+
+  useEffect(() => {
+    fetchPublicEvents()
+      .then(setEvents)
+      .catch(() => setError("Could not load events right now."))
+      .finally(() => setLoading(false));
+    checkBulletinExists().then(setBulletinExists);
+  }, []);
+
   return (
     <SiteLayout>
       <PageHero eyebrow="Life at St. Thereza" title="News & Events" subtitle="Stay connected to our parish community." />
@@ -61,15 +92,26 @@ function News() {
             <GoldDivider />
             <h2 className="font-serif text-3xl text-[var(--navy-deep)] mt-3">Upcoming Events</h2>
           </div>
+          {loading && <p className="text-center mt-10 text-[var(--muted-foreground)]">Loading events…</p>}
+          {error && <p className="text-center mt-10 text-red-500">{error}</p>}
+          {!loading && !error && events.length === 0 && (
+            <p className="text-center mt-10 text-[var(--muted-foreground)]">No upcoming events at the moment. Check back soon.</p>
+          )}
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {events.map(e => (
-              <div key={e.t} className="rounded-xl bg-white p-6 border-t-4 border-[var(--gold)] shadow-[var(--shadow-soft)]">
+              <div key={e.id} className="rounded-xl bg-white p-6 border-t-4 border-[var(--gold)] shadow-[var(--shadow-soft)]">
                 <Calendar className="h-6 w-6 text-[var(--gold)]" />
-                <h3 className="font-serif text-xl text-[var(--navy-deep)] mt-3">{e.t}</h3>
+                {e.category && (
+                  <span className="mt-2 inline-block rounded-full bg-[var(--navy)] text-[var(--gold)] px-3 py-1 text-xs uppercase tracking-wider">
+                    {e.category}
+                  </span>
+                )}
+                <h3 className="font-serif text-xl text-[var(--navy-deep)] mt-3">{e.title}</h3>
+                {e.description && <p className="mt-2 text-sm text-[var(--muted-foreground)]">{e.description}</p>}
                 <div className="mt-3 space-y-1 text-sm text-[var(--muted-foreground)]">
-                  <p className="flex items-center gap-2"><Calendar className="h-3.5 w-3.5" /> {e.d}</p>
-                  <p className="flex items-center gap-2"><Clock className="h-3.5 w-3.5" /> {e.time}</p>
-                  <p className="flex items-center gap-2"><MapPin className="h-3.5 w-3.5" /> {e.loc}</p>
+                  <p className="flex items-center gap-2"><Calendar className="h-3.5 w-3.5" /> {formatDate(e.event_date)}</p>
+                  <p className="flex items-center gap-2"><Clock className="h-3.5 w-3.5" /> {formatTime(e.event_date)}</p>
+                  {e.location && <p className="flex items-center gap-2"><MapPin className="h-3.5 w-3.5" /> {e.location}</p>}
                 </div>
               </div>
             ))}
@@ -82,12 +124,11 @@ function News() {
           <GoldDivider />
           <h2 className="font-serif text-3xl text-[var(--navy-deep)] mt-3">Event Registration</h2>
           <p className="mt-4 text-[var(--muted-foreground)]">
-            Register for upcoming parish events like Confirmation Class, family day, and our Easter Vigil. Use the button below to go to the event registration form.
+            Register for upcoming parish events like Confirmation Class, family day, and our Easter Vigil.
           </p>
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSeBe9Ia1favbmWg-S9w0ptAqHFh0PQgF4RQwcGNEwNOKkk-fw/viewform?embedded=true"
-            target="_blank"
-            rel="noreferrer"
+          
+           <a href="https://docs.google.com/forms/d/e/1FAIpQLSeBe9Ia1favbmWg-S9w0ptAqHFh0PQgF4RQwcGNEwNOKkk-fw/viewform?embedded=true"
+            target="_blank" rel="noreferrer"
             className="mt-8 inline-flex items-center justify-center rounded-full bg-[var(--navy)] px-7 py-3 text-sm font-semibold text-[var(--cream)] hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors"
           >
             Open Event Registration Form
@@ -100,9 +141,17 @@ function News() {
           <GoldDivider />
           <h2 className="font-serif text-3xl text-[var(--navy-deep)] mt-3">Parish Bulletin</h2>
           <p className="mt-3 text-[var(--muted-foreground)]">Download this week's bulletin for readings, prayer intentions and announcements.</p>
-          <a href="#" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--navy)] px-6 py-3 text-sm font-semibold text-[var(--cream)] hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors">
-            <Download className="h-4 w-4" /> Download PDF
-          </a>
+          {bulletinExists ? (
+            
+              <a href={getBulletinDownloadUrl()}
+              target="_blank" rel="noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--navy)] px-6 py-3 text-sm font-semibold text-[var(--cream)] hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors"
+            >
+              <Download className="h-4 w-4" /> Download PDF
+            </a>
+          ) : (
+            <p className="mt-6 text-sm text-[var(--muted-foreground)] italic">No bulletin available this week yet.</p>
+          )}
         </div>
       </section>
     </SiteLayout>
