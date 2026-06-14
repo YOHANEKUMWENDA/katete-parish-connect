@@ -174,24 +174,24 @@ function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-[var(--navy)] text-white px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="text-[var(--gold)] text-xl">✝</span>
-          <div>
-            <p className="font-serif text-lg">St. Thereza Admin</p>
-            <p className="text-xs text-gray-300">Welcome, {adminName}</p>
+      <header className="bg-[var(--navy)] text-white px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-3 min-w-0">
+          <span className="text-[var(--gold)] text-xl shrink-0">✝</span>
+          <div className="min-w-0">
+            <p className="font-serif text-lg leading-tight truncate">St. Thereza Admin</p>
+            <p className="text-xs text-gray-300 truncate">Welcome, {adminName}</p>
           </div>
         </div>
-        <div className="flex items-center gap-4">
-          <a href="/" target="_blank" className="text-xs text-gray-300 hover:text-white">View Site →</a>
-          <button onClick={handleLogout} className="flex items-center gap-2 text-sm text-gray-300 hover:text-white">
+        <div className="flex items-center gap-4 shrink-0">
+          <a href="/" target="_blank" className="text-xs text-gray-300 hover:text-white whitespace-nowrap">View Site →</a>
+          <button onClick={handleLogout} className="flex items-center gap-2 text-sm text-gray-300 hover:text-white whitespace-nowrap">
             <LogOut className="h-4 w-4" /> Logout
           </button>
         </div>
       </header>
 
-      <div className="bg-white border-b border-gray-200 px-6">
-        <div className="flex gap-6">
+      <div className="bg-white border-b border-gray-200 px-4 sm:px-6 overflow-x-auto">
+        <div className="flex gap-4 sm:gap-6 min-w-max">
           {[
             { key: "events", label: "Events", icon: <Calendar className="h-4 w-4" /> },
             { key: "messages", label: `Messages${unread > 0 ? ` (${unread})` : ""}`, icon: <Mail className="h-4 w-4" /> },
@@ -201,7 +201,7 @@ function AdminDashboard() {
             <button
               key={t.key}
               onClick={() => setTab(t.key as "events" | "messages" | "announcement" | "prayers")}
-              className={`flex items-center gap-2 py-4 text-sm font-semibold border-b-2 transition-colors ${
+              className={`flex items-center gap-2 py-4 text-sm font-semibold border-b-2 whitespace-nowrap transition-colors ${
                 tab === t.key
                   ? "border-[var(--gold)] text-[var(--navy-deep)]"
                   : "border-transparent text-gray-500 hover:text-gray-700"
@@ -213,12 +213,12 @@ function AdminDashboard() {
         </div>
       </div>
 
-      <main className="max-w-6xl mx-auto px-6 py-8">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
 
         {/* ── EVENTS TAB ── */}
         {tab === "events" && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
               <h2 className="font-serif text-2xl text-[var(--navy-deep)]">Manage Events</h2>
               <button onClick={openCreate} className="flex items-center gap-2 rounded-full bg-[var(--navy)] px-5 py-2 text-sm font-semibold text-white hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors">
                 <Plus className="h-4 w-4" /> New Event
@@ -227,7 +227,7 @@ function AdminDashboard() {
 
             {showForm && (
               <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-                <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6">
+                <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto">
                   <h3 className="font-serif text-xl text-[var(--navy-deep)] mb-4">
                     {editingEvent ? "Edit Event" : "Create New Event"}
                   </h3>
@@ -238,9 +238,9 @@ function AdminDashboard() {
                     <textarea placeholder="Description" value={form.description} rows={3}
                       onChange={e => setForm({ ...form, description: e.target.value })}
                       className="w-full rounded-md border border-gray-300 px-4 py-2 text-sm" />
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="text-xs font-semibold text-gray-600">Date & Time</label>
+                        <label className="text-xs font-semibold text-gray-600">Date &amp; Time</label>
                         <input required type="datetime-local" value={form.event_date}
                           onChange={e => setForm({ ...form, event_date: e.target.value })}
                           className="w-full rounded-md border border-gray-300 px-4 py-2 text-sm" />
@@ -287,43 +287,45 @@ function AdminDashboard() {
               </div>
             ) : (
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                <table className="w-full text-sm">
-                  <thead className="bg-gray-50 border-b border-gray-200">
-                    <tr>
-                      <th className="text-left px-6 py-3 font-semibold text-gray-600">Title</th>
-                      <th className="text-left px-6 py-3 font-semibold text-gray-600">Date</th>
-                      <th className="text-left px-6 py-3 font-semibold text-gray-600">Category</th>
-                      <th className="text-left px-6 py-3 font-semibold text-gray-600">Status</th>
-                      <th className="text-left px-6 py-3 font-semibold text-gray-600">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100">
-                    {events.map(e => (
-                      <tr key={e.id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 font-medium text-[var(--navy-deep)]">{e.title}</td>
-                        <td className="px-6 py-4 text-gray-500">
-                          {new Date(e.event_date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
-                        </td>
-                        <td className="px-6 py-4">
-                          {e.category && <span className="rounded-full bg-[var(--navy)] text-[var(--gold)] px-2 py-0.5 text-xs">{e.category}</span>}
-                        </td>
-                        <td className="px-6 py-4">
-                          <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${e.is_published ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"}`}>
-                            {e.is_published ? "Published" : "Draft"}
-                          </span>
-                        </td>
-                        <td className="px-6 py-4 flex gap-2">
-                          <button onClick={() => openEdit(e)} className="p-1.5 rounded-md hover:bg-blue-50 text-blue-600">
-                            <Edit className="h-4 w-4" />
-                          </button>
-                          <button onClick={() => handleDeleteEvent(e.id)} className="p-1.5 rounded-md hover:bg-red-50 text-red-500">
-                            <Trash2 className="h-4 w-4" />
-                          </button>
-                        </td>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm min-w-[640px]">
+                    <thead className="bg-gray-50 border-b border-gray-200">
+                      <tr>
+                        <th className="text-left px-6 py-3 font-semibold text-gray-600">Title</th>
+                        <th className="text-left px-6 py-3 font-semibold text-gray-600">Date</th>
+                        <th className="text-left px-6 py-3 font-semibold text-gray-600">Category</th>
+                        <th className="text-left px-6 py-3 font-semibold text-gray-600">Status</th>
+                        <th className="text-left px-6 py-3 font-semibold text-gray-600">Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {events.map(e => (
+                        <tr key={e.id} className="hover:bg-gray-50">
+                          <td className="px-6 py-4 font-medium text-[var(--navy-deep)] whitespace-nowrap">{e.title}</td>
+                          <td className="px-6 py-4 text-gray-500 whitespace-nowrap">
+                            {new Date(e.event_date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            {e.category && <span className="rounded-full bg-[var(--navy)] text-[var(--gold)] px-2 py-0.5 text-xs">{e.category}</span>}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${e.is_published ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"}`}>
+                              {e.is_published ? "Published" : "Draft"}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 flex gap-2 whitespace-nowrap">
+                            <button onClick={() => openEdit(e)} className="p-1.5 rounded-md hover:bg-blue-50 text-blue-600">
+                              <Edit className="h-4 w-4" />
+                            </button>
+                            <button onClick={() => handleDeleteEvent(e.id)} className="p-1.5 rounded-md hover:bg-red-50 text-red-500">
+                              <Trash2 className="h-4 w-4" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             )}
           </div>
@@ -358,7 +360,7 @@ function AdminDashboard() {
                         </div>
                         <div className="flex items-center gap-1 flex-shrink-0">
                           {!m.is_read && <span className="h-2 w-2 rounded-full bg-blue-500" />}
-                          <span className="text-xs text-gray-400">
+                          <span className="text-xs text-gray-400 whitespace-nowrap">
                             {new Date(m.received_at).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}
                           </span>
                         </div>
@@ -370,14 +372,14 @@ function AdminDashboard() {
             </div>
             <div>
               {selectedMsg ? (
-                <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="font-semibold text-[var(--navy-deep)]">{selectedMsg.subject || "No subject"}</h3>
-                      <p className="text-sm text-gray-500">From: {selectedMsg.name} &lt;{selectedMsg.email}&gt;</p>
+                <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
+                  <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
+                    <div className="min-w-0">
+                      <h3 className="font-semibold text-[var(--navy-deep)] break-words">{selectedMsg.subject || "No subject"}</h3>
+                      <p className="text-sm text-gray-500 break-words">From: {selectedMsg.name} &lt;{selectedMsg.email}&gt;</p>
                       <p className="text-xs text-gray-400 mt-1">{new Date(selectedMsg.received_at).toLocaleString("en-GB")}</p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 shrink-0">
                       {!selectedMsg.is_read && (
                         <button onClick={() => handleMarkRead(selectedMsg.id)} className="p-1.5 rounded-md hover:bg-green-50 text-green-600">
                           <CheckCircle className="h-4 w-4" />
@@ -389,7 +391,7 @@ function AdminDashboard() {
                     </div>
                   </div>
                   <div className="border-t border-gray-100 pt-4">
-                    <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">{selectedMsg.message}</p>
+                    <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap break-words">{selectedMsg.message}</p>
                   </div>
                   <a href={`mailto:${selectedMsg.email}`}
                     className="mt-4 inline-flex items-center gap-2 rounded-full bg-[var(--navy)] px-5 py-2 text-sm font-semibold text-white hover:bg-[var(--gold)] hover:text-[var(--navy-deep)] transition-colors">
@@ -437,7 +439,7 @@ function AdminDashboard() {
                         </div>
                         <div className="flex items-center gap-1 flex-shrink-0">
                           {!p.is_read && <span className="h-2 w-2 rounded-full bg-blue-500" />}
-                          <span className="text-xs text-gray-400">
+                          <span className="text-xs text-gray-400 whitespace-nowrap">
                             {new Date(p.submitted_at).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}
                           </span>
                         </div>
@@ -449,22 +451,22 @@ function AdminDashboard() {
             </div>
             <div>
               {selectedPrayer ? (
-                <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="font-semibold text-[var(--navy-deep)]">
+                <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
+                  <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
+                    <div className="min-w-0">
+                      <h3 className="font-semibold text-[var(--navy-deep)] break-words">
                         {selectedPrayer.is_anonymous ? "Anonymous Request" : selectedPrayer.name}
                       </h3>
                       <p className="text-xs text-gray-400 mt-1">{new Date(selectedPrayer.submitted_at).toLocaleString("en-GB")}</p>
                     </div>
                     {!selectedPrayer.is_read && (
-                      <button onClick={() => handleMarkPrayerRead(selectedPrayer.id)} className="p-1.5 rounded-md hover:bg-green-50 text-green-600">
+                      <button onClick={() => handleMarkPrayerRead(selectedPrayer.id)} className="p-1.5 rounded-md hover:bg-green-50 text-green-600 shrink-0">
                         <CheckCircle className="h-4 w-4" />
                       </button>
                     )}
                   </div>
                   <div className="border-t border-gray-100 pt-4">
-                    <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">{selectedPrayer.request}</p>
+                    <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap break-words">{selectedPrayer.request}</p>
                   </div>
                 </div>
               ) : (
